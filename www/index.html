@@ -12,6 +12,12 @@
     placeholder="Digite sua mensagem"></textarea>
     <button onClick="enviaParServidor()">Enviar mensagem</button>
 
+    <form class="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+      <label class="control-label">Escolher Arquivo</label>
+      <input name="avatar" id="input-1" type="file" class="file">
+      <input type="submit" value="submit" />
+  </form>
+
     <div id="list"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>

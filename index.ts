@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv'
 import * as express from 'express'
 import * as http from 'http'
 import * as socketio from "socket.io"
+import uploads from './upload'
 import cors from 'cors'
 import * as note from './controllers/note'
 dotenv.config()
@@ -22,6 +23,14 @@ app.get('/notes/:id', note.get)
 app.post('/notes', note.create)
 app.put('/notes', note.update)
 app.delete('/notes', note.remove)
+
+app.post('/upload', uploads.single('avatar'), (req:any, res:any) =>{
+  try {
+    res.send('Arquivo enviado com sucesso: ' + req.file.filename);
+} catch (error) {
+    console.log(error);
+}
+} )
 
 const server = http.createServer(app)
 const io = new socketio.Server(server)
